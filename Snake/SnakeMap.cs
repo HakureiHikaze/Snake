@@ -16,6 +16,12 @@ namespace Snake
             {Direction.Up, Direction.Down, Direction.Left, Direction.Right};
         private int[] _snakeHead;
         private Direction _heading;
+        private int _score = 0;
+
+        public int GetScore()
+        {
+            return _score;
+        }
         
         internal SnakeMap(int row, int column) : base(row, column)
         {
@@ -44,10 +50,10 @@ namespace Snake
                     newHead[0] = (newHead[0] + 1) % Rows;
                     break;
                 case Direction.Left:
-                    newHead[1] = (newHead[1]+Columns - 1) % Rows;
+                    newHead[1] = (newHead[1]+Columns - 1) % Columns;
                     break;
                 case Direction.Right:
-                    newHead[1] = (newHead[1] + 1) % Rows;
+                    newHead[1] = (newHead[1] + 1) % Columns;
                     break;
             }
 
@@ -58,6 +64,7 @@ namespace Snake
             }
             else if(Data[newHead[0], newHead[1]]<0)
             {
+                _score++;
                 Data[newHead[0], newHead[1]] = Data[_snakeHead[0], _snakeHead[1]] + 1;
                 int[] newFood = new int[2];
                 var rand = new Random();

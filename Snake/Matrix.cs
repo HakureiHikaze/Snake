@@ -48,8 +48,15 @@ namespace Snake
         internal void Print()
         {
             Console.Out.Write("\n");
+            Console.Out.Write("┏");
+            for (int i = 0; i < Columns*2; i++)
+            {
+                Console.Out.Write("━");
+            }
+            Console.Out.Write("┓\n");
             for (int i = 0; i < Rows; i++)
             {
+                Console.Out.Write("│");
                 for (int j = 0; j < Columns; j++)
                 {
                     if (Data[i, j] > 0)
@@ -61,12 +68,17 @@ namespace Snake
                     }
                     else
                     {
-                        Console.Out.Write("□");
+                        Console.Out.Write("\u3000");
                     }
                 }
-                Console.Out.Write("\n");
+                Console.Out.Write("┃\n");
             }
-            Console.Out.Write("\n");
+            Console.Out.Write("┗");
+            for (int i = 0; i < Columns*2; i++)
+            {
+                Console.Out.Write("━");
+            }
+            Console.Out.Write("┛\n");
         }
     }
 }
