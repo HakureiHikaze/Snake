@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Text.Encodings.Web;
 
 namespace Snake
 {
@@ -7,13 +8,23 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            var i1 = Console.In.ReadLine();
-            var i2 = Console.In.ReadLine();
-            var r = int.Parse( (i1 !="" ? i1: "4") ?? "4");
-            var c = int.Parse( (i2 !="" ? i1: "4") ?? "4");
-            Matrix test = new SnakeMap(r,c);
-            test.Print();
-            Console.Out.WriteLine("{0}", ((-2)*2+1)%2);
+            var a =int.Parse(Console.In.ReadLine() ?? "8");
+            var b =int.Parse(Console.In.ReadLine() ?? "8");
+            SnakeMap test = new SnakeMap(a, b);
+            try
+            {
+                while (true)
+                {
+                    Console.Clear();
+                    test.Print();
+                    test.Operate(Console.ReadKey(true));
+                    test.RefreshMap();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Out.WriteLine(e.Message);
+            }
         }
     }
 }

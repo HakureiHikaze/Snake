@@ -47,14 +47,26 @@ namespace Snake
 
         internal void Print()
         {
+            Console.Out.Write("\n");
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
-                    Console.Out.Write("{0,-3}",Data[i,j]);
+                    if (Data[i, j] > 0)
+                    {
+                        Console.Out.Write("■");
+                    }else if (Data[i, j] < 0)
+                    {
+                        Console.Out.Write("☆");
+                    }
+                    else
+                    {
+                        Console.Out.Write("□");
+                    }
                 }
                 Console.Out.Write("\n");
             }
+            Console.Out.Write("\n");
         }
     }
 }
